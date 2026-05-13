@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shashwat IVF CRM</title>
 
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbzSQBAs9qrdwrZN1HE1ukL3gAE-sK_To1vLMJmhzUW1XapX9lysvNm2FdDORb7lFzqv/exec";
+  </script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
@@ -419,6 +423,67 @@
   </div>
 
   <script>
+    async function loadDeals() {
+      try {
+        const response = await fetch(API_URL + '?action=getDeals');
+        const data = await response.json();
+
+        console.log('Deals Loaded:', data);
+
+      } catch (error) {
+        console.error('Error loading deals:', error);
+      }
+    }
+
+    async function createTestDeal() {
+      try {
+        await fetch(API_URL, {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'createDeal',
+            Deal_ID: 'D-' + Date.now(),
+            Date_Registered: new Date().toISOString(),
+            Spoke_Name: 'Ahmedabad',
+            Lead_Source: 'Camp',
+            Patient_Full_Name: 'Test Patient',
+            Wife_Mobile: '9999999999',
+            Husband_Name: 'Test Husband',
+            Husband_Mobile: '8888888888',
+            City_Village: 'Ahmedabad',
+            Current_Stage: 'Registration',
+            Advise_Outcome: '',
+            Next_Followup_Date: new Date().toISOString(),
+            Total_Deposit: 0,
+            Last_Note: 'Created from CRM UI',
+            Last_Updated: new Date().toISOString(),
+            Inf_Duration: '',
+            Inf_Type: '',
+            Prev_History: '',
+            Diagnosis: '',
+            Healthray_Status: 'Pending',
+            Healthray_By: '',
+            Healthray_Date: '',
+            Referred_By_ASHA_ID: '',
+            Total_Visits: 1
+          })
+        });
+
+        confetti({
+          particleCount: 100,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+
+        alert('Test Deal Created');
+
+      } catch (error) {
+        console.error(error);
+        alert('Failed to create deal');
+      }
+    }
+
+    loadDeals();
+
     function openPanel(name) {
       document.getElementById('patientName').innerText = name;
       document.getElementById('mobilePatientName').innerText = name;
