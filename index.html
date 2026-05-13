@@ -244,30 +244,7 @@
                     <th class="px-4 py-3">Notes</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr class="table-row cursor-pointer border-t border-white/8" onclick="openPanel('Priya Patel')">
-                    <td class="px-4 py-3">
-                      <div class="text-base font-bold">Priya Patel</div>
-                      <div class="text-xs text-white/45">9876543210 • Anand</div>
-                    </td>
-                    <td class="px-4 py-3"><span class="stage-blue text-xs px-3 py-1 rounded-full font-semibold">Counselling</span></td>
-                    <td class="px-4 py-3">Today</td>
-                    <td class="px-4 py-3 font-bold text-[#8af1e6]">₹15,000</td>
-                    <td class="px-4 py-3 text-xl">⏳</td>
-                    <td class="px-4 py-3 text-sm text-white/65">Interested in package and EMI options.</td>
-                  </tr>
-                  <tr class="table-row cursor-pointer border-t border-white/8" onclick="openPanel('Nirali Shah')">
-                    <td class="px-4 py-3">
-                      <div class="text-base font-bold">Nirali Shah</div>
-                      <div class="text-xs text-white/45">9090909090 • Nadiad</div>
-                    </td>
-                    <td class="px-4 py-3"><span class="stage-green text-xs px-3 py-1 rounded-full font-semibold">Deposit Paid</span></td>
-                    <td class="px-4 py-3">Tomorrow</td>
-                    <td class="px-4 py-3 font-bold text-[#8af1e6]">₹25,000</td>
-                    <td class="px-4 py-3 text-xl">✅</td>
-                    <td class="px-4 py-3 text-sm text-white/65">Handover pending with clinical team.</td>
-                  </tr>
-                </tbody>
+                <tbody id="dealsTable"></tbody>
               </table>
             </div>
           </div>
@@ -430,6 +407,75 @@
 
         console.log('Deals Loaded:', data);
 
+        const table = document.getElementById('dealsTable');
+
+        if (!table) return;
+
+        table.innerHTML = '';
+
+        // Skip header row
+        for (let i = 1; i < data.length; i++) {
+
+          const row = data[i];
+
+          const patientName = row[4] || '';
+          const wifeMobile = row[5] || '';
+          const city = row[8] || '';
+          const stage = row[9] || '';
+          const followup = row[11] || '';
+          const deposit = row[12] || 0;
+          const healthray = row[19] || 'Pending';
+          const note = row[13] || '';
+
+          let stageClass = 'stage-blue';
+
+          if (stage === 'Deposit Paid') {
+            stageClass = 'stage-green';
+          }
+
+          if (stage === 'Follow-up') {
+            stageClass = 'stage-orange';
+          }
+
+          if (stage === 'Registration') {
+            stageClass = 'stage-pink';
+          }
+
+          table.innerHTML += `
+            <tr class="table-row cursor-pointer border-t border-white/8"
+                onclick="openPanel('${patientName}')">
+
+              <td class="px-4 py-3">
+                <div class="text-base font-bold">${patientName}</div>
+                <div class="text-xs text-white/45">${wifeMobile} • ${city}</div>
+              </td>
+
+              <td class="px-4 py-3">
+                <span class="${stageClass} text-xs px-3 py-1 rounded-full font-semibold">
+                  ${stage}
+                </span>
+              </td>
+
+              <td class="px-4 py-3">
+                ${followup}
+              </td>
+
+              <td class="px-4 py-3 font-bold text-[#8af1e6]">
+                ₹${deposit}
+              </td>
+
+              <td class="px-4 py-3 text-xl">
+                ${healthray === 'Completed' ? '✅' : '⏳'}
+              </td>
+
+              <td class="px-4 py-3 text-sm text-white/65">
+                ${note}
+              </td>
+
+            </tr>
+          `;
+        }
+
       } catch (error) {
         console.error('Error loading deals:', error);
       }
@@ -475,6 +521,8 @@
         });
 
         alert('Test Deal Created');
+
+        loadDeals();
 
       } catch (error) {
         console.error(error);
