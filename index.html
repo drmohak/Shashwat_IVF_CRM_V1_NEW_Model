@@ -199,19 +199,19 @@
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
             <div class="brand-card rounded-[24px] p-4">
               <div class="text-[11px] uppercase tracking-[0.18em] text-white/45">Registrations</div>
-              <div class="text-3xl font-black mt-2">48</div>
+              <div id="registrationsCount" class="text-3xl font-black mt-2">0</div>
             </div>
             <div class="brand-card rounded-[24px] p-4">
               <div class="text-[11px] uppercase tracking-[0.18em] text-white/45">Followups</div>
-              <div class="text-3xl font-black mt-2">112</div>
+              <div id="followupsCount" class="text-3xl font-black mt-2">0</div>
             </div>
             <div class="brand-card rounded-[24px] p-4">
               <div class="text-[11px] uppercase tracking-[0.18em] text-white/45">Deposits</div>
-              <div class="text-3xl font-black mt-2">₹3.4L</div>
+              <div id="depositTotal" class="text-3xl font-black mt-2">₹0</div>
             </div>
             <div class="brand-card rounded-[24px] p-4">
               <div class="text-[11px] uppercase tracking-[0.18em] text-white/45">Healthray Pending</div>
-              <div class="text-3xl font-black mt-2">7</div>
+              <div id="healthrayPending" class="text-3xl font-black mt-2">0</div>
             </div>
           </div>
 
@@ -413,6 +413,11 @@
 
         table.innerHTML = '';
 
+        let registrations = 0;
+        let followups = 0;
+        let deposits = 0;
+        let pendingHealthray = 0;
+
         // Skip header row
         for (let i = 1; i < data.length; i++) {
 
@@ -425,6 +430,18 @@
           const followup = row[11] || '';
           const deposit = row[12] || 0;
           const healthray = row[19] || 'Pending';
+          
+          registrations++;
+
+          if (stage === 'Follow-up') {
+            followups++;
+          }
+
+          deposits += Number(deposit || 0);
+
+          if (healthray !== 'Completed') {
+            pendingHealthray++;
+          }
           const note = row[13] || '';
 
           let stageClass = 'stage-blue';
@@ -475,6 +492,16 @@
             </tr>
           `;
         }
+
+      document.getElementById('registrationsCount').innerText = registrations;
+
+        document.getElementById('followupsCount').innerText = followups;
+
+        document.getElementById('depositTotal').innerText =
+          '₹' + deposits.toLocaleString('en-IN');
+
+        document.getElementById('healthrayPending').innerText =
+          pendingHealthray;
 
       } catch (error) {
         console.error('Error loading deals:', error);
