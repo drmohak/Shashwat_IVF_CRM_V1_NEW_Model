@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shashwat IVF CRM</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      background: radial-gradient(circle at top, #f6f0e3 0%, #dacdb7 45%, #c4b294 100%);
+      font-family: Inter, sans-serif;
+    }
+
+    .skeuo {
+      background: linear-gradient(180deg, #fffdf8, #e2d5bf);
+      border: 1px solid #c8b89b;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        0 10px 20px rgba(0,0,0,0.08);
+    }
+
+    .skeuo-dark {
+      background: linear-gradient(180deg, #5b4d40, #392f27);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .btn-skeuo {
+      background: linear-gradient(180deg, #fffdf8, #d9cbb3);
+      border: 1px solid #c5b18d;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        0 6px 12px rgba(0,0,0,0.08);
+    }
+
+    .btn-dark {
+      background: linear-gradient(180deg, #403932, #1f1b18);
+      border: 1px solid #1b1816;
+      color: white;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .btn-green {
+      background: linear-gradient(180deg, #4c926b, #2d694b);
+      border: 1px solid #24573d;
+      color: white;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .stage-blue {
+      background: #cfe8ff;
+      color: #0f3d6e;
+    }
+
+    .stage-green {
+      background: #d5f4df;
+      color: #175c33;
+    }
+
+    .stage-orange {
+      background: #ffe8c2;
+      color: #7b4c00;
+    }
+
+    .table-row:hover {
+      background: linear-gradient(180deg, #fbf5e9, #ead9bb);
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body class="text-stone-900">
+
+<div class="flex h-screen overflow-hidden">
+
+  <!-- SIDEBAR -->
+  <aside class="w-72 skeuo-dark text-white flex flex-col border-r border-black/20">
+
+    <div class="p-5 border-b border-white/10 flex items-center gap-3">
+      <div class="w-14 h-14 rounded-2xl bg-gradient-to-b from-yellow-100 to-yellow-700"></div>
+      <div>
+        <div class="font-bold text-lg">Shashwat IVF</div>
+        <div class="text-xs text-stone-300">Sales CRM</div>
+      </div>
+    </div>
+
+    <div class="p-4 space-y-3">
+
+      <select class="w-full rounded-2xl px-4 py-3 text-sm text-black skeuo">
+        <option>Select Spoke</option>
+        <option>Ahmedabad</option>
+        <option>Nadiad</option>
+        <option>Khambhat</option>
+        <option>ALL CENTERS</option>
+      </select>
+
+      <button class="w-full btn-skeuo rounded-2xl py-3 font-semibold text-left px-4">
+        Active Funnel
+      </button>
+
+      <button class="w-full btn-skeuo rounded-2xl py-3 font-semibold text-left px-4">
+        Camp Check-In
+      </button>
+
+      <button class="w-full btn-skeuo rounded-2xl py-3 font-semibold text-left px-4">
+        Telecaller Queue
+      </button>
+
+      <button class="w-full btn-skeuo rounded-2xl py-3 font-semibold text-left px-4">
+        ASHA Network
+      </button>
+
+      <button class="w-full btn-skeuo rounded-2xl py-3 font-semibold text-left px-4">
+        Healthray Handover
+      </button>
+
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 overflow-hidden flex">
+
+    <!-- TABLE AREA -->
+    <div class="flex-1 p-4 overflow-hidden flex flex-col gap-4">
+
+      <!-- TOP -->
+      <div class="skeuo rounded-3xl p-5">
+
+        <div class="flex justify-between items-center gap-4 flex-wrap">
+
+          <div>
+            <div class="text-3xl font-black">Shashwat IVF Funnel</div>
+            <div class="text-sm text-stone-500 mt-1">
+              High-speed IVF sales and referral CRM
+            </div>
+          </div>
+
+          <div class="flex gap-3 flex-wrap">
+            <button onclick="newRegistration()" class="btn-dark rounded-2xl px-5 py-3 font-semibold">
+              + New Registration
+            </button>
+
+            <button onclick="depositCelebration()" class="btn-green rounded-2xl px-5 py-3 font-semibold">
+              Add Deposit
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- KPI -->
+      <div class="grid grid-cols-4 gap-4">
+
+        <div class="skeuo rounded-3xl p-4">
+          <div class="text-xs uppercase text-stone-500">Registrations</div>
+          <div class="text-3xl font-black mt-2">48</div>
+        </div>
+
+        <div class="skeuo rounded-3xl p-4">
+          <div class="text-xs uppercase text-stone-500">Followups</div>
+          <div class="text-3xl font-black mt-2">112</div>
+        </div>
+
+        <div class="skeuo rounded-3xl p-4">
+          <div class="text-xs uppercase text-stone-500">Deposits</div>
+          <div class="text-3xl font-black mt-2">₹3.4L</div>
+        </div>
+
+        <div class="skeuo rounded-3xl p-4">
+          <div class="text-xs uppercase text-stone-500">Pending Healthray</div>
+          <div class="text-3xl font-black mt-2">7</div>
+        </div>
+
+      </div>
+
+      <!-- SEARCH -->
+      <div class="skeuo rounded-3xl p-4">
+        <input
+          type="text"
+          placeholder="Search patient or mobile"
+          class="w-full rounded-2xl px-5 py-4 bg-white/60 border border-stone-300 outline-none"
+        />
+      </div>
+
+      <!-- TABLE -->
+      <div class="skeuo rounded-3xl overflow-hidden flex-1 overflow-auto scrollbar-hide">
+
+        <table class="w-full">
+
+          <thead class="bg-gradient-to-b from-yellow-100 to-yellow-300 sticky top-0">
+            <tr class="text-left text-xs uppercase text-stone-700">
+              <th class="px-4 py-3">Patient</th>
+              <th class="px-4 py-3">Stage</th>
+              <th class="px-4 py-3">Followup</th>
+              <th class="px-4 py-3">Deposit</th>
+              <th class="px-4 py-3">Healthray</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr onclick="openPanel('Priya Patel')" class="table-row cursor-pointer border-t border-stone-200">
+              <td class="px-4 py-3">
+                <div class="text-base font-bold">Priya Patel</div>
+                <div class="text-xs text-stone-500">9876543210</div>
+              </td>
+              <td class="px-4 py-3">
+                <span class="stage-blue text-xs px-3 py-1 rounded-full font-semibold">
+                  Counselling
+                </span>
+              </td>
+              <td class="px-4 py-3">Today</td>
+              <td class="px-4 py-3 font-bold text-green-700">₹15,000</td>
+              <td class="px-4 py-3 text-xl">⏳</td>
+            </tr>
+
+            <tr onclick="openPanel('Nirali Shah')" class="table-row cursor-pointer border-t border-stone-200">
+              <td class="px-4 py-3">
+                <div class="text-base font-bold">Nirali Shah</div>
+                <div class="text-xs text-stone-500">9090909090</div>
+              </td>
+              <td class="px-4 py-3">
+                <span class="stage-green text-xs px-3 py-1 rounded-full font-semibold">
+                  Deposit Paid
+                </span>
+              </td>
+              <td class="px-4 py-3">Tomorrow</td>
+              <td class="px-4 py-3 font-bold text-green-700">₹25,000</td>
+              <td class="px-4 py-3 text-xl">✅</td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+    <!-- SLIDE PANEL -->
+    <aside id="panel" class="w-[420px] skeuo border-l border-stone-300 p-5 overflow-auto hidden">
+
+      <div class="flex justify-between items-start">
+        <div>
+          <div id="patientName" class="text-3xl font-black">Priya Patel</div>
+          <div class="text-sm text-stone-500 mt-1">Anand • Counselling</div>
+        </div>
+
+        <button onclick="closePanel()" class="btn-skeuo rounded-2xl w-10 h-10">
+          ✕
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 mt-6">
+
+        <button class="btn-skeuo rounded-2xl py-3 font-semibold">
+          Add Followup
+        </button>
+
+        <button class="btn-green rounded-2xl py-3 font-semibold">
+          Add Deposit
+        </button>
+
+        <button class="btn-skeuo rounded-2xl py-3 font-semibold">
+          Check-In
+        </button>
+
+        <button class="btn-dark rounded-2xl py-3 font-semibold">
+          Healthray
+        </button>
+
+      </div>
+
+      <!-- MEDICAL -->
+      <div class="skeuo rounded-3xl p-4 mt-6">
+
+        <div class="text-xs uppercase text-stone-500">
+          Medical Snapshot
+        </div>
+
+        <div class="space-y-3 mt-4 text-sm">
+
+          <div class="flex justify-between">
+            <span class="text-stone-500">Infertility Duration</span>
+            <span class="font-semibold">5 Years</span>
+          </div>
+
+          <div class="flex justify-between">
+            <span class="text-stone-500">Type</span>
+            <span class="font-semibold">Primary</span>
+          </div>
+
+          <div class="flex justify-between">
+            <span class="text-stone-500">Diagnosis</span>
+            <span class="font-semibold">PCOS</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="mt-6">
+
+        <div class="text-xs uppercase text-stone-500 mb-4">
+          Journey Timeline
+        </div>
+
+        <div class="space-y-4">
+
+          <div class="skeuo rounded-3xl p-4">
+            <div class="flex justify-between items-center">
+              <div class="font-bold">Physical Visit</div>
+              <div class="text-xs text-stone-500">13 May 2026</div>
+            </div>
+
+            <div class="text-sm text-stone-600 mt-3">
+              Couple visited camp. IVF process explained.
+            </div>
+          </div>
+
+          <div class="skeuo rounded-3xl p-4">
+            <div class="flex justify-between items-center">
+              <div class="font-bold">Followup Call</div>
+              <div class="text-xs text-stone-500">Today</div>
+            </div>
+
+            <div class="text-sm text-stone-600 mt-3">
+              Patient interested in EMI payment option.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+  </main>
+
+</div>
+
+<script>
+
+  function openPanel(name) {
+    document.getElementById('panel').classList.remove('hidden')
+    document.getElementById('patientName').innerText = name
+  }
+
+  function closePanel() {
+    document.getElementById('panel').classList.add('hidden')
+  }
+
+  function newRegistration() {
+    confetti({
+      particleCount: 80,
+      spread: 70,
+      origin: { y: 0.6 }
+    })
+
+    alert('New Registration Saved')
+  }
+
+  function depositCelebration() {
+    confetti({
+      particleCount: 250,
+      spread: 140,
+      origin: { y: 0.6 }
+    })
+
+    alert('Deposit Added Successfully')
+  }
+
+</script>
+
+</body>
+</html>
