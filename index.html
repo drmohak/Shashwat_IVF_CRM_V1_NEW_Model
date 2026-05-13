@@ -14,601 +14,436 @@
 
   <style>
     :root {
-      --brand-blue: #2f57b8;
-      --brand-pink: #ec2295;
-      --brand-orange: #f76a1f;
-      --brand-teal: #0c9b8c;
-      --ink: #080808;
-      --panel: #111111;
-      --panel-2: #171717;
-      --line: rgba(255,255,255,0.08);
-    }
-
-    html, body {
-      height: 100%;
+      --blue: #2f57b8;
+      --pink: #ec2295;
+      --orange: #f76a1f;
+      --teal: #0c9b8c;
     }
 
     body {
       margin: 0;
-      color: #f5f7fb;
+      font-family: Inter, sans-serif;
       background:
-        radial-gradient(circle at top, rgba(47, 87, 184, 0.22), transparent 28%),
-        radial-gradient(circle at 85% 10%, rgba(236, 34, 149, 0.14), transparent 24%),
-        radial-gradient(circle at 20% 90%, rgba(247, 106, 31, 0.12), transparent 20%),
-        linear-gradient(180deg, #111111 0%, #0a0a0a 48%, #050505 100%);
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        radial-gradient(circle at top, rgba(47,87,184,0.2), transparent 25%),
+        radial-gradient(circle at right, rgba(236,34,149,0.12), transparent 25%),
+        linear-gradient(180deg,#111,#050505);
+      color: white;
     }
 
-    .brand-panel {
-      background: linear-gradient(180deg, rgba(22,22,22,0.98), rgba(11,11,11,0.98));
+    .panel {
+      background: linear-gradient(180deg,#181818,#0c0c0c);
       border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 16px 36px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
 
-    .brand-card {
-      background: linear-gradient(180deg, rgba(23,23,23,0.98), rgba(12,12,12,0.98));
+    .field {
+      background: #111;
       border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.34), inset 0 1px 0 rgba(255,255,255,0.03);
-    }
-
-    .brand-field {
-      background: linear-gradient(180deg, #161616, #0c0c0c);
-      border: 1px solid rgba(255,255,255,0.09);
-      color: #f3f4f6;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 6px 16px rgba(0,0,0,0.22);
-    }
-
-    .brand-button {
-      background: linear-gradient(180deg, #2c2c2c, #121212);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: #f5f7fb;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 10px 20px rgba(0,0,0,0.34);
-    }
-
-    .brand-button:hover {
-      transform: translateY(-1px);
-    }
-
-    .brand-button-primary {
-      background: linear-gradient(180deg, var(--brand-pink), #c91f7f);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: white;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 10px 22px rgba(236,34,149,0.18);
-    }
-
-    .brand-button-blue {
-      background: linear-gradient(180deg, var(--brand-blue), #213f8a);
-      border: 1px solid rgba(255,255,255,0.1);
       color: white;
     }
 
-    .brand-button-orange {
-      background: linear-gradient(180deg, var(--brand-orange), #d95315);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: white;
-    }
-
-    .brand-button-teal {
-      background: linear-gradient(180deg, var(--brand-teal), #087165);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: white;
-    }
-
-    .nav-chip.active {
-      background: linear-gradient(180deg, rgba(236,34,149,0.18), rgba(47,87,184,0.10));
-      border-color: rgba(236,34,149,0.45);
-      color: white;
-    }
-
-    .nav-chip {
+    .nav-btn {
       background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-      color: #d5d7db;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: 0.2s;
     }
 
-    .stage-blue { background: rgba(47, 87, 184, 0.22); color: #a9c0ff; }
-    .stage-green { background: rgba(12, 155, 140, 0.20); color: #8af1e6; }
-    .stage-orange { background: rgba(247, 106, 31, 0.22); color: #ffc596; }
-    .stage-pink { background: rgba(236, 34, 149, 0.18); color: #ffb2df; }
+    .nav-btn.active {
+      background: linear-gradient(180deg, rgba(236,34,149,0.18), rgba(47,87,184,0.16));
+      border-color: rgba(236,34,149,0.35);
+    }
 
-    .scrollbar-hide::-webkit-scrollbar { display: none; }
-    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    .table-row:hover {
+      background: rgba(255,255,255,0.03);
+    }
 
-    .table-row:hover { background: rgba(255,255,255,0.03); }
+    .stage-registration { background: rgba(236,34,149,0.18); color: #ffb5e1; }
+    .stage-counselling { background: rgba(47,87,184,0.18); color: #b7caff; }
+    .stage-followup { background: rgba(247,106,31,0.18); color: #ffc28f; }
+    .stage-deposit { background: rgba(12,155,140,0.18); color: #9ef7ec; }
   </style>
 </head>
 <body>
-  <div class="min-h-screen flex flex-col xl:flex-row">
 
-    <!-- TOP MOBILE BAR -->
-    <header class="xl:hidden brand-panel sticky top-0 z-30 px-4 py-3 flex items-center justify-between gap-3">
-      <div class="flex items-center gap-3 min-w-0">
-        <img src="logo.png" alt="Shashwat IVF" class="h-10 w-auto shrink-0" onerror="this.style.display='none'" />
-        <div class="min-w-0">
-          <div class="font-black text-sm leading-tight truncate">Shashwat IVF CRM</div>
-          <div class="text-[11px] text-white/55 truncate">Sales & Referral Funnel</div>
-        </div>
-      </div>
-      <button class="brand-button rounded-2xl px-3 py-2 text-xs font-semibold" onclick="openPanel('Priya Patel')">Open</button>
-    </header>
+<div class="min-h-screen flex flex-col xl:flex-row">
 
-    <!-- SIDEBAR -->
-    <aside class="xl:w-80 brand-panel xl:border-r border-b xl:border-b-0 border-white/10">
-      <div class="hidden xl:flex items-center gap-3 px-5 py-5 border-b border-white/10">
-        <img src="logo.png" alt="Shashwat IVF" class="h-14 w-auto" onerror="this.style.display='none'" />
-      </div>
+  <aside class="w-full xl:w-80 panel border-r border-white/10 p-4 space-y-4">
 
-      <div class="p-4 xl:p-5 space-y-4">
-        <div class="brand-card rounded-3xl p-4">
-          <div class="text-[11px] uppercase tracking-[0.22em] text-white/45 mb-2">Center Filter</div>
-          <select id="centerSelector" class="brand-field w-full rounded-2xl px-4 py-3 text-sm outline-none">
-            <option value="">Select Spoke</option>
-          </select>
-        </div>
+    <img src="logo.png" class="h-14 w-auto" />
 
-        <div class="brand-card rounded-3xl p-4 hidden xl:block">
-          <div class="text-[11px] uppercase tracking-[0.22em] text-white/45 mb-2">Staff Name</div>
-          <input class="brand-field w-full rounded-2xl px-4 py-3 text-sm outline-none" value="Riya" />
-        </div>
+    <select id="centerSelector" class="field rounded-2xl px-4 py-3 w-full outline-none">
+      <option>Loading Centers...</option>
+    </select>
 
-        <div class="xl:block overflow-x-auto scrollbar-hide">
-          <div class="flex xl:flex-col gap-2 min-w-max xl:min-w-0 pb-1 xl:pb-0">
-            <button class="nav-chip active rounded-2xl px-4 py-3 text-left text-sm font-semibold">Active Funnel</button>
-            <button class="nav-chip rounded-2xl px-4 py-3 text-left text-sm font-semibold">Camp Check-In</button>
-            <button class="nav-chip rounded-2xl px-4 py-3 text-left text-sm font-semibold">Telecaller Queue</button>
-            <button class="nav-chip rounded-2xl px-4 py-3 text-left text-sm font-semibold">ASHA Network</button>
-            <button class="nav-chip rounded-2xl px-4 py-3 text-left text-sm font-semibold">ASHA Ledger</button>
-            <button class="nav-chip rounded-2xl px-4 py-3 text-left text-sm font-semibold">Healthray Handover</button>
-            <button class="nav-chip rounded-2xl px-4 py-3 text-left text-sm font-semibold">Settings</button>
+    <div class="flex xl:flex-col gap-2 overflow-auto">
+      <button class="nav-btn active rounded-2xl px-4 py-3 text-left font-semibold" onclick="showModule('funnel')">Active Funnel</button>
+      <button class="nav-btn rounded-2xl px-4 py-3 text-left font-semibold" onclick="showModule('checkin')">Camp Check-In</button>
+      <button class="nav-btn rounded-2xl px-4 py-3 text-left font-semibold" onclick="showModule('telecaller')">Telecaller</button>
+      <button class="nav-btn rounded-2xl px-4 py-3 text-left font-semibold" onclick="showModule('asha')">ASHA Network</button>
+      <button class="nav-btn rounded-2xl px-4 py-3 text-left font-semibold" onclick="showModule('healthray')">Healthray</button>
+    </div>
+
+  </aside>
+
+  <main class="flex-1 p-4 overflow-hidden">
+
+    <div class="grid gap-4 xl:grid-cols-[1fr_420px] h-full">
+
+      <section class="space-y-4 min-w-0 overflow-hidden">
+
+        <div class="panel rounded-[28px] p-5">
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+            <div>
+              <div class="text-3xl font-black">Shashwat IVF CRM</div>
+              <div class="text-sm text-white/50 mt-1">Dynamic Google Sheets SaaS CRM</div>
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              <button onclick="createTestDeal()" class="rounded-2xl px-4 py-3 font-semibold bg-pink-600">+ Registration</button>
+              <button onclick="depositCelebration()" class="rounded-2xl px-4 py-3 font-semibold bg-teal-700">Deposit</button>
+            </div>
           </div>
         </div>
-      </div>
-    </aside>
 
-    <!-- MAIN -->
-    <main class="flex-1 p-3 sm:p-4 xl:p-5 overflow-hidden">
-      <div class="grid gap-4 xl:grid-cols-[1fr_420px] h-full">
-
-        <!-- LEFT CONTENT -->
-        <section class="flex flex-col gap-4 min-w-0">
-
-          <div class="brand-panel rounded-[28px] p-4 sm:p-5">
-            <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-              <div class="min-w-0">
-                <div class="flex items-center gap-3 min-w-0">
-                  <div class="h-14 w-14 rounded-3xl bg-[linear-gradient(180deg,rgba(47,87,184,0.55),rgba(236,34,149,0.28))] border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"></div>
-                  <div class="min-w-0">
-                    <div class="text-2xl sm:text-3xl font-black tracking-tight truncate">Shashwat IVF Funnel</div>
-                    <div class="text-sm text-white/55 truncate">Compact, mobile-first CRM styled to match your brand</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap gap-2">
-                <button onclick="newRegistration()" class="brand-button-primary rounded-2xl px-4 py-3 text-sm font-semibold">+ New Registration</button>
-                <button onclick="depositCelebration()" class="brand-button-teal rounded-2xl px-4 py-3 text-sm font-semibold">Add Deposit</button>
-                <button class="brand-button-blue rounded-2xl px-4 py-3 text-sm font-semibold">Healthray</button>
-              </div>
-            </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div class="panel rounded-3xl p-4">
+            <div class="text-xs text-white/45 uppercase">Registrations</div>
+            <div id="registrationsCount" class="text-3xl font-black mt-2">0</div>
           </div>
-
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-            <div class="brand-card rounded-[24px] p-4">
-              <div class="text-[11px] uppercase tracking-[0.18em] text-white/45">Registrations</div>
-              <div id="registrationsCount" class="text-3xl font-black mt-2">0</div>
-            </div>
-            <div class="brand-card rounded-[24px] p-4">
-              <div class="text-[11px] uppercase tracking-[0.18em] text-white/45">Followups</div>
-              <div id="followupsCount" class="text-3xl font-black mt-2">0</div>
-            </div>
-            <div class="brand-card rounded-[24px] p-4">
-              <div class="text-[11px] uppercase tracking-[0.18em] text-white/45">Deposits</div>
-              <div id="depositTotal" class="text-3xl font-black mt-2">₹0</div>
-            </div>
-            <div class="brand-card rounded-[24px] p-4">
-              <div class="text-[11px] uppercase tracking-[0.18em] text-white/45">Healthray Pending</div>
-              <div id="healthrayPending" class="text-3xl font-black mt-2">0</div>
-            </div>
+          <div class="panel rounded-3xl p-4">
+            <div class="text-xs text-white/45 uppercase">Followups</div>
+            <div id="followupsCount" class="text-3xl font-black mt-2">0</div>
           </div>
-
-          <div class="brand-card rounded-[28px] p-3 sm:p-4">
-            <div class="relative">
-              <input type="text" placeholder="Search patient or mobile" class="brand-field w-full rounded-2xl px-4 py-3 pl-12 text-sm outline-none" />
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-white/45">⌕</span>
-            </div>
+          <div class="panel rounded-3xl p-4">
+            <div class="text-xs text-white/45 uppercase">Deposits</div>
+            <div id="depositTotal" class="text-3xl font-black mt-2">₹0</div>
           </div>
-
-          <!-- DESKTOP/TABLET TABLE -->
-          <div class="brand-card rounded-[28px] overflow-hidden flex-1 min-h-0 hidden md:flex flex-col">
-            <div class="px-4 py-3 border-b border-white/8 flex items-center justify-between">
-              <div>
-                <div class="text-sm font-bold">Active Funnel</div>
-                <div class="text-xs text-white/45">No disqualified or completed procedures shown</div>
-              </div>
-              <span class="text-xs rounded-full px-3 py-1 stage-pink font-semibold">2 Visible</span>
-            </div>
-
-            <div class="overflow-auto scrollbar-hide">
-              <table class="min-w-full border-separate border-spacing-0">
-                <thead class="sticky top-0 z-10">
-                  <tr class="text-left text-[11px] uppercase tracking-[0.18em] text-white/45 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))]">
-                    <th class="px-4 py-3">Patient</th>
-                    <th class="px-4 py-3">Stage</th>
-                    <th class="px-4 py-3">Follow-up</th>
-                    <th class="px-4 py-3">Deposit</th>
-                    <th class="px-4 py-3">Healthray</th>
-                    <th class="px-4 py-3">Notes</th>
-                  </tr>
-                </thead>
-                <tbody id="dealsTable"></tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- MOBILE CARDS -->
-          <div class="md:hidden space-y-3">
-            <div class="brand-card rounded-[26px] p-4 cursor-pointer" onclick="openPanel('Priya Patel')">
-              <div class="flex items-start justify-between gap-3">
-                <div>
-                  <div class="text-base font-bold">Priya Patel</div>
-                  <div class="text-xs text-white/45 mt-1">9876543210 • Anand</div>
-                </div>
-                <span class="stage-blue text-xs px-3 py-1 rounded-full font-semibold">Counselling</span>
-              </div>
-              <div class="mt-3 flex items-center justify-between text-sm">
-                <span class="text-white/55">Follow-up</span>
-                <span>Today</span>
-              </div>
-              <div class="mt-2 flex items-center justify-between text-sm">
-                <span class="text-white/55">Deposit</span>
-                <span class="font-bold text-[#8af1e6]">₹15,000</span>
-              </div>
-              <div class="mt-2 flex items-center justify-between text-sm">
-                <span class="text-white/55">Healthray</span>
-                <span>⏳ Pending</span>
-              </div>
-            </div>
-
-            <div class="brand-card rounded-[26px] p-4 cursor-pointer" onclick="openPanel('Nirali Shah')">
-              <div class="flex items-start justify-between gap-3">
-                <div>
-                  <div class="text-base font-bold">Nirali Shah</div>
-                  <div class="text-xs text-white/45 mt-1">9090909090 • Nadiad</div>
-                </div>
-                <span class="stage-green text-xs px-3 py-1 rounded-full font-semibold">Deposit Paid</span>
-              </div>
-              <div class="mt-3 flex items-center justify-between text-sm">
-                <span class="text-white/55">Follow-up</span>
-                <span>Tomorrow</span>
-              </div>
-              <div class="mt-2 flex items-center justify-between text-sm">
-                <span class="text-white/55">Deposit</span>
-                <span class="font-bold text-[#8af1e6]">₹25,000</span>
-              </div>
-              <div class="mt-2 flex items-center justify-between text-sm">
-                <span class="text-white/55">Healthray</span>
-                <span>✅ Completed</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- DETAIL PANEL -->
-        <aside id="panel" class="brand-card rounded-[28px] p-4 sm:p-5 overflow-auto min-h-0 hidden xl:block">
-          <div class="flex items-start justify-between gap-3">
-            <div class="min-w-0">
-              <div id="patientName" class="text-2xl sm:text-3xl font-black truncate">Priya Patel</div>
-              <div class="text-sm text-white/55 mt-1 truncate">Anand • Counselling</div>
-            </div>
-            <button class="brand-button rounded-2xl w-10 h-10 shrink-0" onclick="closePanel()">✕</button>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3 mt-6">
-            <button class="brand-button rounded-2xl py-3 font-semibold text-sm">Add Follow-up</button>
-            <button class="brand-button-teal rounded-2xl py-3 font-semibold text-sm">Add Deposit</button>
-            <button class="brand-button-blue rounded-2xl py-3 font-semibold text-sm">Check-In</button>
-            <button class="brand-button-orange rounded-2xl py-3 font-semibold text-sm">Healthray</button>
-          </div>
-
-          <div class="brand-card rounded-[24px] p-4 mt-6">
-            <div class="text-[11px] uppercase tracking-[0.22em] text-white/45">Medical Snapshot</div>
-            <div class="grid grid-cols-2 gap-3 mt-4 text-sm">
-              <div class="brand-card rounded-2xl p-3"><div class="text-white/45 text-[11px]">Duration</div><div class="mt-1 font-semibold">5 Years</div></div>
-              <div class="brand-card rounded-2xl p-3"><div class="text-white/45 text-[11px]">Type</div><div class="mt-1 font-semibold">Primary</div></div>
-              <div class="brand-card rounded-2xl p-3"><div class="text-white/45 text-[11px]">History</div><div class="mt-1 font-semibold">PCOS</div></div>
-              <div class="brand-card rounded-2xl p-3"><div class="text-white/45 text-[11px]">Diagnosis</div><div class="mt-1 font-semibold">PCOS</div></div>
-            </div>
-          </div>
-
-          <div class="mt-6">
-            <div class="text-[11px] uppercase tracking-[0.22em] text-white/45 mb-4">Journey Timeline</div>
-            <div class="space-y-3">
-              <div class="brand-card rounded-[24px] p-4">
-                <div class="flex items-center justify-between gap-3">
-                  <div class="font-bold">Physical Visit</div>
-                  <div class="text-xs text-white/45">13 May 2026</div>
-                </div>
-                <div class="text-sm text-white/65 mt-3">Couple visited camp. IVF process explained.</div>
-              </div>
-              <div class="brand-card rounded-[24px] p-4">
-                <div class="flex items-center justify-between gap-3">
-                  <div class="font-bold">Follow-up Call</div>
-                  <div class="text-xs text-white/45">Today</div>
-                </div>
-                <div class="text-sm text-white/65 mt-3">Patient is comparing package options and timelines.</div>
-              </div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </main>
-  </div>
-
-  <!-- MOBILE PANEL OVERLAY -->
-  <div id="mobilePanel" class="fixed inset-0 z-40 hidden xl:hidden">
-    <div class="absolute inset-0 bg-black/70" onclick="closeMobilePanel()"></div>
-    <div class="absolute inset-x-3 bottom-3 top-16 brand-card rounded-[28px] p-4 sm:p-5 overflow-auto">
-      <div class="flex items-start justify-between gap-3">
-        <div class="min-w-0">
-          <div id="mobilePatientName" class="text-2xl font-black truncate">Priya Patel</div>
-          <div class="text-sm text-white/55 mt-1 truncate">Anand • Counselling</div>
-        </div>
-        <button class="brand-button rounded-2xl w-10 h-10 shrink-0" onclick="closeMobilePanel()">✕</button>
-      </div>
-
-      <div class="grid grid-cols-2 gap-3 mt-6">
-        <button class="brand-button rounded-2xl py-3 font-semibold text-sm">Add Follow-up</button>
-        <button class="brand-button-teal rounded-2xl py-3 font-semibold text-sm">Add Deposit</button>
-        <button class="brand-button-blue rounded-2xl py-3 font-semibold text-sm">Check-In</button>
-        <button class="brand-button-orange rounded-2xl py-3 font-semibold text-sm">Healthray</button>
-      </div>
-
-      <div class="brand-card rounded-[24px] p-4 mt-6">
-        <div class="text-[11px] uppercase tracking-[0.22em] text-white/45">Medical Snapshot</div>
-        <div class="grid grid-cols-2 gap-3 mt-4 text-sm">
-          <div class="brand-card rounded-2xl p-3"><div class="text-white/45 text-[11px]">Duration</div><div class="mt-1 font-semibold">5 Years</div></div>
-          <div class="brand-card rounded-2xl p-3"><div class="text-white/45 text-[11px]">Type</div><div class="mt-1 font-semibold">Primary</div></div>
-          <div class="brand-card rounded-2xl p-3"><div class="text-white/45 text-[11px]">History</div><div class="mt-1 font-semibold">PCOS</div></div>
-          <div class="brand-card rounded-2xl p-3"><div class="text-white/45 text-[11px]">Diagnosis</div><div class="mt-1 font-semibold">PCOS</div></div>
-        </div>
-      </div>
-
-      <div class="mt-6">
-        <div class="text-[11px] uppercase tracking-[0.22em] text-white/45 mb-4">Journey Timeline</div>
-        <div class="space-y-3">
-          <div class="brand-card rounded-[24px] p-4">
-            <div class="flex items-center justify-between gap-3">
-              <div class="font-bold">Physical Visit</div>
-              <div class="text-xs text-white/45">13 May 2026</div>
-            </div>
-            <div class="text-sm text-white/65 mt-3">Couple visited camp. IVF process explained.</div>
-          </div>
-          <div class="brand-card rounded-[24px] p-4">
-            <div class="flex items-center justify-between gap-3">
-              <div class="font-bold">Follow-up Call</div>
-              <div class="text-xs text-white/45">Today</div>
-            </div>
-            <div class="text-sm text-white/65 mt-3">Patient is comparing package options and timelines.</div>
+          <div class="panel rounded-3xl p-4">
+            <div class="text-xs text-white/45 uppercase">Healthray Pending</div>
+            <div id="healthrayPending" class="text-3xl font-black mt-2">0</div>
           </div>
         </div>
+
+        <div class="panel rounded-3xl p-4">
+          <input id="searchInput" oninput="renderDeals()" type="text" placeholder="Search patient or mobile" class="field rounded-2xl px-4 py-3 w-full outline-none" />
+        </div>
+
+        <!-- Funnel Module -->
+        <div id="funnelModule" class="module panel rounded-3xl overflow-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="text-left text-xs uppercase text-white/45 border-b border-white/10">
+                <th class="px-4 py-3">Patient</th>
+                <th class="px-4 py-3">Stage</th>
+                <th class="px-4 py-3">Followup</th>
+                <th class="px-4 py-3">Deposit</th>
+                <th class="px-4 py-3">Healthray</th>
+              </tr>
+            </thead>
+            <tbody id="dealsTable"></tbody>
+          </table>
+        </div>
+
+        <div id="checkinModule" class="module panel rounded-3xl p-5 hidden">
+          <div class="text-2xl font-bold">Camp Check-In</div>
+          <div class="text-white/50 mt-2">Search returning patients and increment visit count.</div>
+        </div>
+
+        <div id="telecallerModule" class="module panel rounded-3xl p-5 hidden">
+          <div class="text-2xl font-bold">Telecaller Queue</div>
+          <div class="text-white/50 mt-2">Stalled counselling leads appear here.</div>
+        </div>
+
+        <div id="ashaModule" class="module panel rounded-3xl p-5 hidden">
+          <div class="text-2xl font-bold">ASHA Network</div>
+          <div class="text-white/50 mt-2">Referral and payout management.</div>
+        </div>
+
+        <div id="healthrayModule" class="module panel rounded-3xl p-5 hidden">
+          <div class="text-2xl font-bold">Healthray Handover</div>
+          <div class="text-white/50 mt-2">Deposit patients awaiting clinical handover.</div>
+        </div>
+
+      </section>
+
+      <aside id="detailPanel" class="hidden xl:block panel rounded-3xl p-5 overflow-auto">
+        <div id="detailContent">
+          <div class="text-3xl font-black">Select Patient</div>
+          <div class="text-white/45 mt-2">Click any row to view details.</div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+</div>
+
+<script>
+
+const crmData = {
+  deals: [],
+  headers: [],
+  col: {}
+};
+
+let currentModule = 'funnel';
+
+async function loadDeals() {
+
+  try {
+
+    const response = await fetch(API_URL + '?action=getDeals');
+    const data = await response.json();
+
+    crmData.headers = data[0];
+
+    crmData.col = {
+      dealId: crmData.headers.indexOf('Deal_ID'),
+      registered: crmData.headers.indexOf('Date_Registered'),
+      spoke: crmData.headers.indexOf('Spoke_Name'),
+      leadSource: crmData.headers.indexOf('Lead_Source'),
+      patient: crmData.headers.indexOf('Patient_Full_Name'),
+      wifeMobile: crmData.headers.indexOf('Wife_Mobile'),
+      city: crmData.headers.indexOf('City_Village'),
+      stage: crmData.headers.indexOf('Current_Stage'),
+      followup: crmData.headers.indexOf('Next_Followup_Date'),
+      deposit: crmData.headers.indexOf('Total_Deposit'),
+      note: crmData.headers.indexOf('Last_Note'),
+      healthray: crmData.headers.indexOf('Healthray_Status')
+    };
+
+    crmData.deals = data.slice(1).filter(row => row.length > 3);
+
+    populateCenters();
+    renderDeals();
+    updateKPIs();
+
+  } catch(err) {
+    console.error(err);
+    alert('Failed to load CRM data');
+  }
+}
+
+function populateCenters() {
+
+  const selector = document.getElementById('centerSelector');
+
+  const centers = [...new Set(
+    crmData.deals
+      .map(row => row[crmData.col.spoke])
+      .filter(Boolean)
+  )].sort();
+
+  selector.innerHTML = '<option value="ALL CENTERS">ALL CENTERS</option>';
+
+  centers.forEach(center => {
+    selector.innerHTML += `<option value="${center}">${center}</option>`;
+  });
+
+  selector.onchange = renderDeals;
+}
+
+function renderDeals() {
+
+  const table = document.getElementById('dealsTable');
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const selectedCenter = document.getElementById('centerSelector').value;
+
+  table.innerHTML = '';
+
+  crmData.deals.forEach(row => {
+
+    const patient = row[crmData.col.patient] || '';
+    const mobile = row[crmData.col.wifeMobile] || '';
+    const city = row[crmData.col.city] || '';
+    const stage = row[crmData.col.stage] || '';
+    const followup = row[crmData.col.followup] || '';
+    const deposit = row[crmData.col.deposit] || 0;
+    const healthray = row[crmData.col.healthray] || 'Pending';
+    const note = row[crmData.col.note] || '';
+    const center = row[crmData.col.spoke] || '';
+
+    if(selectedCenter !== 'ALL CENTERS' && selectedCenter !== center) return;
+
+    const searchable = `${patient} ${mobile} ${city}`.toLowerCase();
+
+    if(!searchable.includes(search)) return;
+
+    let stageClass = 'stage-registration';
+
+    if(stage.includes('Counselling')) stageClass = 'stage-counselling';
+    if(stage.includes('Follow')) stageClass = 'stage-followup';
+    if(stage.includes('Deposit')) stageClass = 'stage-deposit';
+
+    table.innerHTML += `
+      <tr class="table-row border-t border-white/8 cursor-pointer"
+          onclick="openDeal('${patient.replace(/'/g, '')}')">
+
+        <td class="px-4 py-3">
+          <div class="text-base font-bold">${patient}</div>
+          <div class="text-xs text-white/45">${mobile} • ${city}</div>
+        </td>
+
+        <td class="px-4 py-3">
+          <span class="${stageClass} px-3 py-1 rounded-full text-xs font-semibold">
+            ${stage}
+          </span>
+        </td>
+
+        <td class="px-4 py-3">${followup}</td>
+
+        <td class="px-4 py-3 text-[#9ef7ec] font-bold">
+          ₹${Number(deposit).toLocaleString('en-IN')}
+        </td>
+
+        <td class="px-4 py-3 text-xl">
+          ${healthray === 'Completed' ? '✅' : '⏳'}
+        </td>
+
+      </tr>
+    `;
+
+  });
+}
+
+function updateKPIs() {
+
+  const registrations = crmData.deals.length;
+
+  const followups = crmData.deals.filter(row => {
+    return (row[crmData.col.stage] || '').includes('Follow');
+  }).length;
+
+  const deposits = crmData.deals.reduce((sum, row) => {
+    return sum + Number(row[crmData.col.deposit] || 0);
+  }, 0);
+
+  const pending = crmData.deals.filter(row => {
+    return (row[crmData.col.healthray] || '') !== 'Completed';
+  }).length;
+
+  document.getElementById('registrationsCount').innerText = registrations;
+  document.getElementById('followupsCount').innerText = followups;
+  document.getElementById('depositTotal').innerText = '₹' + deposits.toLocaleString('en-IN');
+  document.getElementById('healthrayPending').innerText = pending;
+}
+
+function showModule(module) {
+
+  currentModule = module;
+
+  document.querySelectorAll('.module').forEach(el => {
+    el.classList.add('hidden');
+  });
+
+  document.querySelectorAll('.nav-btn').forEach(el => {
+    el.classList.remove('active');
+  });
+
+  if(module === 'funnel') {
+    document.getElementById('funnelModule').classList.remove('hidden');
+  }
+
+  if(module === 'checkin') {
+    document.getElementById('checkinModule').classList.remove('hidden');
+  }
+
+  if(module === 'telecaller') {
+    document.getElementById('telecallerModule').classList.remove('hidden');
+  }
+
+  if(module === 'asha') {
+    document.getElementById('ashaModule').classList.remove('hidden');
+  }
+
+  if(module === 'healthray') {
+    document.getElementById('healthrayModule').classList.remove('hidden');
+  }
+
+  event.target.classList.add('active');
+}
+
+function openDeal(patientName) {
+
+  const deal = crmData.deals.find(row => {
+    return row[crmData.col.patient] === patientName;
+  });
+
+  if(!deal) return;
+
+  document.getElementById('detailContent').innerHTML = `
+
+    <div class="text-3xl font-black">${patientName}</div>
+
+    <div class="text-white/45 mt-2">
+      ${deal[crmData.col.city] || ''}
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 mt-6">
+      <button class="bg-pink-600 rounded-2xl py-3 font-semibold">Add Follow-up</button>
+      <button class="bg-teal-700 rounded-2xl py-3 font-semibold">Add Deposit</button>
+    </div>
+
+    <div class="panel rounded-3xl p-4 mt-6">
+      <div class="text-xs uppercase text-white/45">Latest Note</div>
+      <div class="mt-3 text-sm text-white/70">
+        ${deal[crmData.col.note] || 'No notes available'}
       </div>
     </div>
-  </div>
 
-  <script>
-    async function loadDeals() {
-      try {
-        const response = await fetch(API_URL + '?action=getDeals');
-        const data = await response.json();
+  `;
+}
 
-        console.log('Deals Loaded:', data);
+async function createTestDeal() {
 
-        const table = document.getElementById('dealsTable');
+  try {
 
-        if (!table) return;
+    await fetch(API_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'createDeal',
+        Deal_ID: 'D-' + Date.now(),
+        Date_Registered: new Date().toISOString(),
+        Spoke_Name: 'Ahmedabad',
+        Lead_Source: 'Camp',
+        Patient_Full_Name: 'Test Patient',
+        Wife_Mobile: '9999999999',
+        Husband_Name: 'Test Husband',
+        Husband_Mobile: '8888888888',
+        City_Village: 'Ahmedabad',
+        Current_Stage: 'Registration',
+        Advise_Outcome: '',
+        Next_Followup_Date: new Date().toISOString(),
+        Total_Deposit: 0,
+        Last_Note: 'Created from CRM UI',
+        Last_Updated: new Date().toISOString(),
+        Inf_Duration: '',
+        Inf_Type: '',
+        Prev_History: '',
+        Diagnosis: '',
+        Healthray_Status: 'Pending',
+        Healthray_By: '',
+        Healthray_Date: '',
+        Referred_By_ASHA_ID: '',
+        Total_Visits: 1
+      })
+    });
 
-        table.innerHTML = '';
-
-        let registrations = 0;
-        let uniqueCenters = new Set();
-        let followups = 0;
-        let deposits = 0;
-        let pendingHealthray = 0;
-
-        // Skip header row
-        for (let i = 1; i < data.length; i++) {
-
-          const row = data[i];
-
-          const patientName = row[4] || '';
-          const wifeMobile = row[5] || '';
-          const city = row[8] || '';
-          const spoke = row[2] || '';
-          const stage = row[9] || '';
-          const followup = row[11] || '';
-          const deposit = row[12] || 0;
-          const healthray = row[19] || 'Pending';
-          
-          registrations++;
-
-          if (spoke) {
-            uniqueCenters.add(spoke);
-          }
-
-          if (stage === 'Follow-up') {
-            followups++;
-          }
-
-          deposits += Number(deposit || 0);
-
-          if (healthray !== 'Completed') {
-            pendingHealthray++;
-          }
-          const note = row[13] || '';
-
-          let stageClass = 'stage-blue';
-
-          if (stage === 'Deposit Paid') {
-            stageClass = 'stage-green';
-          }
-
-          if (stage === 'Follow-up') {
-            stageClass = 'stage-orange';
-          }
-
-          if (stage === 'Registration') {
-            stageClass = 'stage-pink';
-          }
-
-          table.innerHTML += `
-            <tr class="table-row cursor-pointer border-t border-white/8"
-                onclick="openPanel('${patientName}')">
-
-              <td class="px-4 py-3">
-                <div class="text-base font-bold">${patientName}</div>
-                <div class="text-xs text-white/45">${wifeMobile} • ${city}</div>
-              </td>
-
-              <td class="px-4 py-3">
-                <span class="${stageClass} text-xs px-3 py-1 rounded-full font-semibold">
-                  ${stage}
-                </span>
-              </td>
-
-              <td class="px-4 py-3">
-                ${followup}
-              </td>
-
-              <td class="px-4 py-3 font-bold text-[#8af1e6]">
-                ₹${deposit}
-              </td>
-
-              <td class="px-4 py-3 text-xl">
-                ${healthray === 'Completed' ? '✅' : '⏳'}
-              </td>
-
-              <td class="px-4 py-3 text-sm text-white/65">
-                ${note}
-              </td>
-
-            </tr>
-          `;
-        }
-
-      document.getElementById('registrationsCount').innerText = registrations;
-
-        document.getElementById('followupsCount').innerText = followups;
-
-        document.getElementById('depositTotal').innerText =
-          '₹' + deposits.toLocaleString('en-IN');
-
-        document.getElementById('healthrayPending').innerText =
-          pendingHealthray;
-
-        const selector = document.getElementById('centerSelector');
-
-        selector.innerHTML = '<option value="">Select Spoke</option>';
-
-        Array.from(uniqueCenters).sort().forEach(center => {
-          selector.innerHTML += `
-            <option value="${center}">${center}</option>
-          `;
-        });
-
-        selector.innerHTML += '<option value="ALL CENTERS">ALL CENTERS</option>';
-
-      } catch (error) {
-        console.error('Error loading deals:', error);
-      }
-    }
-
-    async function createTestDeal() {
-      try {
-        await fetch(API_URL, {
-          method: 'POST',
-          body: JSON.stringify({
-            action: 'createDeal',
-            Deal_ID: 'D-' + Date.now(),
-            Date_Registered: new Date().toISOString(),
-            Spoke_Name: 'Ahmedabad',
-            Lead_Source: 'Camp',
-            Patient_Full_Name: 'Test Patient',
-            Wife_Mobile: '9999999999',
-            Husband_Name: 'Test Husband',
-            Husband_Mobile: '8888888888',
-            City_Village: 'Ahmedabad',
-            Current_Stage: 'Registration',
-            Advise_Outcome: '',
-            Next_Followup_Date: new Date().toISOString(),
-            Total_Deposit: 0,
-            Last_Note: 'Created from CRM UI',
-            Last_Updated: new Date().toISOString(),
-            Inf_Duration: '',
-            Inf_Type: '',
-            Prev_History: '',
-            Diagnosis: '',
-            Healthray_Status: 'Pending',
-            Healthray_By: '',
-            Healthray_Date: '',
-            Referred_By_ASHA_ID: '',
-            Total_Visits: 1
-          })
-        });
-
-        confetti({
-          particleCount: 100,
-          spread: 80,
-          origin: { y: 0.6 }
-        });
-
-        alert('Test Deal Created');
-
-        loadDeals();
-
-      } catch (error) {
-        console.error(error);
-        alert('Failed to create deal');
-      }
-    }
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
 
     loadDeals();
 
-    function openPanel(name) {
-      document.getElementById('patientName').innerText = name;
-      document.getElementById('mobilePatientName').innerText = name;
+  } catch(err) {
+    console.error(err);
+  }
+}
 
-      const panel = document.getElementById('panel');
-      const mobilePanel = document.getElementById('mobilePanel');
-      if (window.innerWidth >= 1280) {
-        panel.classList.remove('hidden');
-      } else {
-        mobilePanel.classList.remove('hidden');
-      }
-    }
+function depositCelebration() {
+  confetti({ particleCount: 250, spread: 120, origin: { y: 0.6 } });
+}
 
-    function closePanel() {
-      document.getElementById('panel').classList.add('hidden');
-    }
+loadDeals();
 
-    function closeMobilePanel() {
-      document.getElementById('mobilePanel').classList.add('hidden');
-    }
+</script>
 
-    function newRegistration() {
-      confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
-      alert('New Registration Saved');
-    }
-
-    function depositCelebration() {
-      confetti({ particleCount: 220, spread: 140, origin: { y: 0.6 } });
-      alert('Deposit Added Successfully');
-    }
-
-    window.addEventListener('resize', function() {
-      if (window.innerWidth >= 1280) {
-        document.getElementById('mobilePanel').classList.add('hidden');
-      }
-    });
-  </script>
 </body>
 </html>
