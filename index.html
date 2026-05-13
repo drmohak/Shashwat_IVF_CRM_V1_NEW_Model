@@ -141,12 +141,8 @@
       <div class="p-4 xl:p-5 space-y-4">
         <div class="brand-card rounded-3xl p-4">
           <div class="text-[11px] uppercase tracking-[0.22em] text-white/45 mb-2">Center Filter</div>
-          <select class="brand-field w-full rounded-2xl px-4 py-3 text-sm outline-none">
-            <option>Select Spoke</option>
-            <option>Anand</option>
-            <option>Nadiad</option>
-            <option>Khambhat</option>
-            <option>ALL CENTERS</option>
+          <select id="centerSelector" class="brand-field w-full rounded-2xl px-4 py-3 text-sm outline-none">
+            <option value="">Select Spoke</option>
           </select>
         </div>
 
@@ -414,6 +410,7 @@
         table.innerHTML = '';
 
         let registrations = 0;
+        let uniqueCenters = new Set();
         let followups = 0;
         let deposits = 0;
         let pendingHealthray = 0;
@@ -426,12 +423,17 @@
           const patientName = row[4] || '';
           const wifeMobile = row[5] || '';
           const city = row[8] || '';
+          const spoke = row[2] || '';
           const stage = row[9] || '';
           const followup = row[11] || '';
           const deposit = row[12] || 0;
           const healthray = row[19] || 'Pending';
           
           registrations++;
+
+          if (spoke) {
+            uniqueCenters.add(spoke);
+          }
 
           if (stage === 'Follow-up') {
             followups++;
@@ -502,6 +504,18 @@
 
         document.getElementById('healthrayPending').innerText =
           pendingHealthray;
+
+        const selector = document.getElementById('centerSelector');
+
+        selector.innerHTML = '<option value="">Select Spoke</option>';
+
+        Array.from(uniqueCenters).sort().forEach(center => {
+          selector.innerHTML += `
+            <option value="${center}">${center}</option>
+          `;
+        });
+
+        selector.innerHTML += '<option value="ALL CENTERS">ALL CENTERS</option>';
 
       } catch (error) {
         console.error('Error loading deals:', error);
